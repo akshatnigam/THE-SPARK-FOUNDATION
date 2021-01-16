@@ -38,7 +38,6 @@ In this internship, I had accomplished 5 task within the given Time-frame.
 <br>**Click Here -[To view this Task](https://github.com/akshatnigam/THE-SPARK-FOUNDATION/tree/main/Prediction%20using%20Decision%20Tree%20Algorithm)**
 
 ### # Task : <br> Timeline Analysis : Covid-19 (Level - Advanced)
-_Please click on the images on right side to view my solution (preferably youtube)._
 1. Create a storyboard showing spread of Covid 19 cases in your country or any region (Asia, Europe, BRICS etc)
 1. Use animation, timeline and annotations to create attractive and interactive dashboards and story
 1. Identify interesting patterns and possible reasons helping Covid 19 spread with basic as well as advanced charts
