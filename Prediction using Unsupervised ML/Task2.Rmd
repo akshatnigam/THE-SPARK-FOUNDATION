@@ -1,0 +1,65 @@
+---
+title: "Task 2  Iris dataset"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### importing ***ggplot & cluster*** library
+```{r}
+library(ggplot2)
+library(cluster)
+```
+### Read the dataset from the csv file
+``` {r}
+task2 <- read.csv("iris.csv")
+print(task2)
+```
+```{r}
+library(ggplot2)
+```
+
+## Plotting graph between PetalLengthCm and  PetalWidthCm
+```{r}
+ggplot(task2, aes(PetalLengthCm, PetalWidthCm)) + geom_point(aes(col=Species), size=4)
+```
+
+
+## Plotting graph between SepalLengthCm and  SepalWidthCm
+```{r}
+ggplot(task2, aes(SepalLengthCm, SepalWidthCm)) + geom_point(aes(col=Species), size=4)
+
+ 
+
+```
+### Summary of the given dataset
+```{r}
+summary(task2)
+head(task2)
+```
+### Extracting the features
+```{r}
+k<- c("SepalLengthCm","SepalWidthCm","PetalLengthCm","PetalWidthCm")
+df = task2[k]
+print(df)
+```
+### Optimal number of cluster in Dataset
+```{r}
+twss <- vector(mode="character", length=10)
+for (i in 1:10){
+  irisCluster <- kmeans(df, center=i, nstart=20)
+  twss[i] <- irisCluster$tot.withinss
+}
+plot(1:10, twss, type="b", pch=19)
+```
+
+We are able to see that total within sum of square value is significant between 2 & 3 as compared to 3 & 4.
+So, we will take **3 as the number of clusters.**
+
+### Plotting
+```{r}
+df <- kmeans(df[,1:4], center=3, nstart=20)
+clusplot(iris, df$cluster, color=T, shade=T, labels=0, lines=0)
+```
