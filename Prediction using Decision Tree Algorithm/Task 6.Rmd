@@ -1,0 +1,52 @@
+---
+title: "Task 6- Decision Tree Algorithm"
+output: github_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Importing Dataset
+```{r}
+r<-read.csv("iris.csv")
+head(r)
+```
+## Extracting Features
+```{r}
+k<- c("SepalLengthCm","SepalWidthCm","PetalLengthCm","PetalWidthCm","Species")
+df = r[k]
+print(df)
+```
+## Analyzing the given dataset
+``` {r}
+summary(r)
+str(r)
+```
+## Importing Library
+```{r}
+library(rpart)
+library(rpart.plot)
+```
+## Test-Train split of Dataset
+```{r}
+indexes = sample(150, 110)
+iris_train = df[indexes,]
+iris_test = df[-indexes,]
+```
+## Setting target values and inputs
+```{r}
+target = Species ~ SepalLengthCm + SepalWidthCm + PetalLengthCm + PetalWidthCm
+tree = rpart(target, data = iris_train, method = "class")
+rpart.plot(tree)
+```
+
+## Testing the model using test Dataset 
+```{r}
+predictions = predict(tree, iris_test,type='class')
+table(predictions, iris_test$Species)
+```
+## Correct Predictions
+```{r}
+cp <-  sum(predictions == iris_test$Species)
+sprintf("No. of correct predictions : %i", cp)
+sprintf("Correct Prediction: %0.2f %%",(cp/40)*100)
+```
