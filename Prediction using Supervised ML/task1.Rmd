@@ -1,0 +1,48 @@
+---
+title: "Task 1 using student dataset"
+output:
+  github_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Read the dataset from the csv file
+```{r}
+task1 <- read.csv("Task1.csv")
+print(task1)
+```
+### Summary of the given dataset
+```{r}
+summary(task1)
+```
+### Allocating variables to the dataset
+
+```{r}
+hour<-task1$Hours
+score<-task1$Scores
+```
+```{r}
+print(hour)
+print(score)
+```
+### Creating linear Regression Model of the dataset
+```{r}
+r1<- lm(score~hour)
+```
+```{r}
+print(r1)
+```
+### Graphical Representation of Linear Regression Model
+```{r}
+plot(hour,score,col = "purple",main = "No. of Hours & Scores of Regression", abline(r1),cex = 1.3,pch = 16,xlab = "Hours",ylab = "Score")
+```
+
+### Predicting score of a person who studies 9.25hrs/day
+```{r}
+pred<-data.frame(hour=9.25)
+result<- predict(r1,pred)
+print(result)
+```
